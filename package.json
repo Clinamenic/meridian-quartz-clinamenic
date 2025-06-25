@@ -4,6 +4,9 @@
   "description": "A specialized fork of Quartz optimized for Meridian Digital Garden deployments",
   "main": "index.js",
   "type": "module",
+  "bin": {
+    "quartz": "./quartz/bootstrap-cli.mjs"
+  },
   "engines": {
     "node": ">=22",
     "npm": ">=10.9.2"
