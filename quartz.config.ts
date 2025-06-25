@@ -2,23 +2,76 @@ import { QuartzConfig } from "./quartz/cfg"
 import * as Plugin from "./quartz/plugins"
 
 /**
- * Quartz 4 Configuration
- *
- * See https://quartz.jzhao.xyz/configuration for more information.
+ * Meridian-Quartz Configuration
+ * 
+ * Key differences from vanilla Quartz:
+ * - Content sourced from parent directory (workspace root)
+ * - Meridian-specific ignore patterns
+ * - Pre-configured for .quartz/ installation location
  */
 const config: QuartzConfig = {
   configuration: {
-    pageTitle: "Quartz 4",
-    pageTitleSuffix: "",
+    pageTitle: "Digital Garden",
     enableSPA: true,
     enablePopovers: true,
-    analytics: {
-      provider: "plausible",
-    },
+    analytics: null,
     locale: "en-US",
-    baseUrl: "quartz.jzhao.xyz",
-    ignorePatterns: ["private", "templates", ".obsidian"],
-    defaultDateType: "modified",
+    baseUrl: undefined,
+    ignorePatterns: [
+      // Quartz infrastructure
+      ".quartz/**",
+      ".quartz-cache/**",
+      
+      // Meridian infrastructure  
+      ".meridian/**",
+      
+      // Development infrastructure
+      ".git/**",
+      ".gitignore",
+      "node_modules/**",
+      "package*.json",
+      "yarn.lock",
+      "tsconfig*.json",
+      "*.config.{js,ts}",
+      "vite.config.{js,ts}",
+      "rollup.config.{js,ts}",
+      "webpack.config.{js,ts}",
+      
+      // Build and temporary
+      "dist/**",
+      "build/**", 
+      "cache/**",
+      "*.log",
+      "tmp/**",
+      "temp/**",
+      ".cache/**",
+      
+      // IDE and system
+      ".vscode/**",
+      ".idea/**",
+      "*.swp",
+      "*.swo", 
+      ".DS_Store",
+      "Thumbs.db",
+      
+      // Backup files
+      "*~",
+      "*.bak",
+      "*.tmp",
+      
+      // Private content
+      "private/**",
+      "templates/**",
+      ".obsidian/**",
+      
+      // Common documentation that shouldn't be published
+      "CHANGELOG.md",
+      "CONTRIBUTING.md",
+      "INSTALL.md",
+      "TODO.md",
+      "ROADMAP.md",
+    ],
+    defaultDateType: "created",
     theme: {
       fontOrigin: "googleFonts",
       cdnCaching: true,
@@ -37,7 +90,6 @@ const config: QuartzConfig = {
           secondary: "#284b63",
           tertiary: "#84a59d",
           highlight: "rgba(143, 159, 169, 0.15)",
-          textHighlight: "#fff23688",
         },
         darkMode: {
           light: "#161618",
@@ -48,7 +100,6 @@ const config: QuartzConfig = {
           secondary: "#7b97aa",
           tertiary: "#84a59d",
           highlight: "rgba(143, 159, 169, 0.15)",
-          textHighlight: "#b3aa0288",
         },
       },
     },
@@ -56,22 +107,17 @@ const config: QuartzConfig = {
   plugins: {
     transformers: [
       Plugin.FrontMatter(),
-      Plugin.CreatedModifiedDate({
-        priority: ["frontmatter", "git", "filesystem"],
-      }),
-      Plugin.SyntaxHighlighting({
-        theme: {
-          light: "github-light",
-          dark: "github-dark",
-        },
-        keepBackground: false,
+      Plugin.CreatedModifiedDate({ priority: ["frontmatter", "filesystem"] }),
+      Plugin.Latex({ renderEngine: "katex" }),
+      Plugin.SyntaxHighlighting({ 
+        theme: { light: "github-light", dark: "github-dark" }, 
+        keepBackground: false 
       }),
       Plugin.ObsidianFlavoredMarkdown({ enableInHtmlEmbed: false }),
       Plugin.GitHubFlavoredMarkdown(),
       Plugin.TableOfContents(),
       Plugin.CrawlLinks({ markdownLinkResolution: "shortest" }),
       Plugin.Description(),
-      Plugin.Latex({ renderEngine: "katex" }),
     ],
     filters: [Plugin.RemoveDrafts()],
     emitters: [
@@ -80,16 +126,14 @@ const config: QuartzConfig = {
       Plugin.ContentPage(),
       Plugin.FolderPage(),
       Plugin.TagPage(),
-      Plugin.ContentIndex({
-        enableSiteMap: true,
-        enableRSS: true,
-      }),
+      Plugin.ContentIndex({ enableSiteMap: true, enableRSS: true }),
       Plugin.Assets(),
       Plugin.Static(),
-      Plugin.Favicon(),
       Plugin.NotFoundPage(),
-      // Comment out CustomOgImages to speed up build time
-      Plugin.CustomOgImages(),
+      // TODO: Add Meridian-specific plugins once implemented
+      // MeridianPlugin.CollatePlugin(),
+      // MeridianPlugin.ArchivePlugin(),
+      // MeridianPlugin.BroadcastPlugin(),
     ],
   },
 }
