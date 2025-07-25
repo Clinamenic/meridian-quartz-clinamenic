@@ -1,6 +1,14 @@
 import { QuartzConfig } from "./quartz/cfg"
 import * as Plugin from "./quartz/plugins"
 
+/**
+ * Clinamenic Quartz Configuration
+ * 
+ * Based on Meridian-Quartz template with enhanced features:
+ * - Content sourced from parent directory (workspace root)
+ * - Meridian-specific ignore patterns for workspace scanning
+ * - Pre-configured for .quartz/ installation location
+ */
 const config: QuartzConfig = {
   configuration: {
     pageTitle: "Index",
@@ -11,7 +19,60 @@ const config: QuartzConfig = {
     },
     locale: "en-US",
     baseUrl: "www.clinamenic.com",
-    ignorePatterns: ["private", "templates", ".obsidian"],
+    ignorePatterns: [
+      // Quartz infrastructure
+      ".quartz/**",
+      ".quartz-cache/**",
+      
+      // Meridian infrastructure  
+      ".meridian/**",
+      
+      // Development infrastructure
+      ".git/**",
+      ".gitignore",
+      "node_modules/**",
+      "package*.json",
+      "yarn.lock",
+      "tsconfig*.json",
+      "*.config.{js,ts}",
+      "vite.config.{js,ts}",
+      "rollup.config.{js,ts}",
+      "webpack.config.{js,ts}",
+      
+      // Build and temporary
+      "dist/**",
+      "build/**", 
+      "cache/**",
+      "*.log",
+      "tmp/**",
+      "temp/**",
+      ".cache/**",
+      
+      // IDE and system
+      ".vscode/**",
+      ".idea/**",
+      "*.swp",
+      "*.swo", 
+      ".DS_Store",
+      "Thumbs.db",
+      
+      // Backup files
+      "*~",
+      "*.bak",
+      "*.tmp",
+      
+      // Private content
+      "private/**",
+      "templates/**",
+      ".obsidian/**",
+      
+      // Common documentation that shouldn't be published
+      "CHANGELOG.md",
+      "CONTRIBUTING.md",
+      "INSTALL.md",
+      "TODO.md",
+      "ROADMAP.md",
+    ],
     defaultDateType: "created",
     theme: {
       fontOrigin: "googleFonts",
