@@ -29,49 +29,12 @@ const config: QuartzConfig = {
       
       // Development infrastructure
       ".git/**",
-      ".gitignore",
       "node_modules/**",
-      "package*.json",
-      "yarn.lock",
-      "tsconfig*.json",
-      "*.config.{js,ts}",
-      "vite.config.{js,ts}",
-      "rollup.config.{js,ts}",
-      "webpack.config.{js,ts}",
-      
-      // Build and temporary
-      "dist/**",
-      "build/**", 
-      "cache/**",
-      "*.log",
-      "tmp/**",
-      "temp/**",
-      ".cache/**",
-      
-      // IDE and system
-      ".vscode/**",
-      ".idea/**",
-      "*.swp",
-      "*.swo", 
-      ".DS_Store",
-      "Thumbs.db",
-      
-      // Backup files
-      "*~",
-      "*.bak",
-      "*.tmp",
       
       // Private content
       "private/**",
       "templates/**",
       ".obsidian/**",
-      
-      // Common documentation that shouldn't be published
-      "CHANGELOG.md",
-      "CONTRIBUTING.md",
-      "INSTALL.md",
-      "TODO.md",
-      "ROADMAP.md",
     ],
     defaultDateType: "created",
     theme: {
