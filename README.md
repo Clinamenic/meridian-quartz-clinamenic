@@ -1,10 +1,10 @@
-# Meridian-Quartz
+# Meridian-Quartz-Clinamenic
 
-A specialized fork of [Quartz](https://github.com/jackyzha0/quartz) optimized for Meridian Digital Garden deployments.
+A specialized fork of [Quartz](https://github.com/jackyzha0/quartz) optimized for Meridian Digital Garden deployments with enhanced citation and academic features.
 
 ## Attribution
 
-This project is based on [Quartz](https://github.com/jackyzha0/quartz) by [@jackyzha0](https://github.com/jackyzha0). 
+This project is based on [Quartz](https://github.com/jackyzha0/quartz) by [@jackyzha0](https://github.com/jackyzha0).
 
 Original Quartz is licensed under the MIT License. All original license terms and attribution are preserved.
 
@@ -16,9 +16,21 @@ Original Quartz is licensed under the MIT License. All original license terms an
 - **Streamlined Initialization**: No runtime customization needed - ready to build immediately
 - **Reduced Dependencies**: Smaller footprint with only necessary components
 
+## Clinamenic-Specific Features
+
+- **Enhanced Citation System**: Advanced citation generation and management tools
+- **Academic Styling**: Specialized components for academic and research content
+- **Arweave Integration**: Built-in support for decentralized content storage
+- **Sidenotes Support**: Academic-style sidenotes for enhanced reading experience
+- **License Information Display**: Automatic license and attribution display
+- **Image Modal System**: Enhanced image viewing with modal overlays
+- **Author Name Components**: Dedicated author attribution components
+- **Publish Date Tracking**: Automatic publication date management
+
 ## Installation Location
 
 This repository is designed to be cloned into `workspace/.quartz/` where it will:
+
 - Source content from `workspace/` (parent directory)
 - Build output to `workspace/.quartz/public/`
 - Ignore Meridian infrastructure automatically
@@ -30,16 +42,19 @@ This fork is specifically designed for use with Meridian's Deploy functionality.
 ## Differences from Vanilla Quartz
 
 ### Removed Components
+
 - `docs/` - Vanilla Quartz documentation
 - `content/` - Example content (sources from workspace root instead)
 - `.github/` - Vanilla CI/CD workflows
 
 ### Added Components
+
 - `plugins/meridian/` - Meridian-specific integration plugins
 - Pre-configured ignore patterns for Meridian workflow
 - Optimized package.json for Meridian requirements
 
 ### Configuration Changes
+
 - Content sourcing from `../` (workspace root) instead of `./content`
 - Meridian-optimized ignore patterns
 - Auto-registered Meridian plugins
